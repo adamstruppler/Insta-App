@@ -15,7 +15,7 @@ app.use(require('./config/error-handler'))
 
 app.get('/api/posts', (req, res) => {
   Post.find((err, posts) => {
-    if(err) {
+    if (err) {
       res.json({error: err})
     } else {
       res.json({msg: 'Success', posts: posts})
@@ -26,7 +26,7 @@ app.get('/api/posts', (req, res) => {
 app.get('/api/posts/:postId', (req, res) => {
   const postId = req.params.postId
   Post.findById({_id: postId}, (err, post) => {
-    if(err) {
+    if (err) {
       res.json({error: err})
     } else {
       res.json({msg: `Found ${post}`, post})
@@ -39,7 +39,7 @@ app.post('/api/posts', (req, res) => {
   const newPost = {title, img, caption, userName}
 
   Post(newPost).save((err, savedPost) => {
-    if(err) {
+    if (err) {
       res.json({error: err})
     } else {
       res.json({msg: 'Success', data: savedPost})
@@ -50,7 +50,7 @@ app.post('/api/posts', (req, res) => {
 app.delete('/api/posts/:postId', (req, res) => {
   const deleteId = req.params.postId
   Post.remove({_id: deleteId}, (err, posts) => {
-    if(err) {
+    if (err) {
       res.json({error: err})
     } else {
       res.json({msg: 'Deleted'})

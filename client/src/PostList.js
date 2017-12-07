@@ -1,22 +1,28 @@
 import React from 'react'
+import Post from './Post'
+import PropTypes from 'prop-types'
 
-const PostList = ({posts}) => {
+const PostList = ({posts, deletePost}) => {
   return (
     <div>
       {
         posts.map((item, index) => {
           return (
-            <div key={index}>
-              <p>{item.title}</p>
-              <img src={item.img} />
-              <p>{item.caption}</p>
-              <p>{item.userName}</p>
-            </div>
+            <Post
+              item={item}
+              index={index}
+              deletePost={() => deletePost(item)}
+            />
           )
         })
       }
     </div>
   )
+}
+
+PostList.propTypes = {
+  posts: PropTypes.string.isRequired,
+  deletePost: PropTypes.func.isRequired
 }
 
 export default PostList
